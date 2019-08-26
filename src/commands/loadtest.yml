@@ -11,6 +11,9 @@ parameters:
     description: "Select a proper greeting"
 steps:
   - run:
+      name: fetching-code
+      command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/Alpha/runRemoteLoadtest.py
+  - run:
       name: loadtesting
       #command: echo would loadtest with << parameters.nWorkers >> workers
-      command: ./runRemoteLoadtest.py https://codero2.neocortix.com --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
+      command: python3 ./runRemoteLoadtest.py https://codero2.neocortix.com --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
