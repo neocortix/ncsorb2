@@ -36,7 +36,7 @@ workflows:
       # key in CircleCI via SSH Permissions, with github.com as Hostname)
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-dev
-          ssh-fingerprints: ":8c:6b:36:ce:54:5b:43:ad:f6:2d:38:3d:e2:71:83:24"
+          ssh-fingerprints: "1a:b2:7e:f4:a9:e1:09:f9:ce:ee:1b:b6:c8:8d:4f:08"
           requires:
             - orb-tools/publish-dev
           filters:
@@ -48,7 +48,7 @@ workflows:
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-master
           cleanup-tags: true
-          ssh-fingerprints: ":8c:6b:36:ce:54:5b:43:ad:f6:2d:38:3d:e2:71:83:24"
+          ssh-fingerprints: "1a:b2:7e:f4:a9:e1:09:f9:ce:ee:1b:b6:c8:8d:4f:08"
           tag: master
           requires:
             - orb-tools/publish-dev
