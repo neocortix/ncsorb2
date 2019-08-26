@@ -12,4 +12,5 @@ parameters:
 steps:
   - run:
       name: loadtesting
-      command: echo would loadtest with << parameters.nWorkers >> workers
+      #command: echo would loadtest with << parameters.nWorkers >> workers
+      command: ./runRemoteLoadtest.py https://codero2.neocortix.com --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
