@@ -1,0 +1,15 @@
+# How to author commands: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands
+description: >
+  performs a loadtest using Necocortix Last-mile Loadtest service
+parameters:
+  nWorkers:
+    type: integer
+    default: 1
+  greeting:
+    type: string
+    default: "Hello"
+    description: "Select a proper greeting"
+steps:
+  - run:
+      name: loadtesting
+      command: echo would loadtest with << parameters.nWorkers >> workers
