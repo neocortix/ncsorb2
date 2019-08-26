@@ -9,5 +9,5 @@ parameters:
     default: "Hello"
     description: "Select a proper greeting"
 steps:
-  - greet:
+  - loadtest:
       greeting: << parameters.greeting >>
