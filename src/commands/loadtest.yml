@@ -9,8 +9,8 @@ parameters:
     type: integer
     default: 1
   susTime:
-    type: string
-    default: "10"
+    type: integer
+    default: 10
     description: "how much time to sustain the test after startup (in seconds)"
 steps:
   - run:
@@ -18,6 +18,6 @@ steps:
       command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/Alpha/runRemoteLoadtest.py
   - run:
       name: loadtesting
-      command: python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >> --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
+      command: python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >> --nWorkers << parameters.nWorkers >> --susTime << parameters.susTime >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
   - store_artifacts:
       path: loadtest_out.json
