@@ -51,6 +51,7 @@ if __name__ == "__main__":
     ap.add_argument( '--masterUrl', default='http://localhost', help='url of the master' )
     ap.add_argument( '--nConcurrent', type=int, default=1, help='number of concurrent tests' )
     ap.add_argument( '--nWorkers', type=int, default=1, help='the # of worker instances to launch (or zero for all available)' )
+    ap.add_argument( '--susTime', type=int, default=10, help='time to sustain the test after startup (in seconds)' )
     args = ap.parse_args()
 
     masterUrl = args.masterUrl
@@ -71,7 +72,7 @@ if __name__ == "__main__":
     # set params for tests
     nWorkers = args.nWorkers
     startTimeLimit = 30
-    susTime = 30
+    susTime = args.susTime
     usersPerWorker = 6
     rampUpRate = nWorkers * 1
     reqParams = [args.victimHostUrl, "<MasterHostUnspecified>",
