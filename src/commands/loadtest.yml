@@ -16,3 +16,5 @@ steps:
   - run:
       name: loadtesting
       command: python3 ./runRemoteLoadtest.py https://codero2.neocortix.com --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
+  - store_artifacts:
+      path: loadtest_out.json
