@@ -18,6 +18,10 @@ steps:
       command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/Alpha/runRemoteLoadtest.py
   - run:
       name: loadtesting
-      command: python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >> --nWorkers << parameters.nWorkers >> --susTime << parameters.susTime >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
+      command: >-
+        python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >>
+        --nWorkers << parameters.nWorkers >> --susTime << parameters.susTime >>
+        --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/
+        --authToken $NCS_AUTH_TOKEN
   - store_artifacts:
       path: loadtest_out.json
