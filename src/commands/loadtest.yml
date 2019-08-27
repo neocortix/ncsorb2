@@ -2,19 +2,22 @@
 description: >
   performs a loadtest using Necocortix Last-mile Loadtest service
 parameters:
+  targetHostUrl:
+    type: string
+    description: "url of the host to target as victim"
   nWorkers:
     type: integer
     default: 1
-  greeting:
+  susTime:
     type: string
-    default: "Hello"
-    description: "Select a proper greeting"
+    default: "10"
+    description: "how much time to sustain the test after startup (in seconds)"
 steps:
   - run:
       name: fetching code (alpha)
       command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/Alpha/runRemoteLoadtest.py
   - run:
       name: loadtesting
-      command: python3 ./runRemoteLoadtest.py https://codero2.neocortix.com --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
+      command: python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >> --nWorkers << parameters.nWorkers >> --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/ --authToken $NCS_AUTH_TOKEN
   - store_artifacts:
       path: loadtest_out.json
