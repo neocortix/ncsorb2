@@ -142,6 +142,10 @@ if __name__ == "__main__":
             downloadDataFile( dataUrlPrefix + '/locustStats.jlog', dataDirPath )
         except Exception as exc:
             logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
+        try:
+            downloadDataFile( dataUrlPrefix + '/integratedPerf.png', dataDirPath )
+        except Exception as exc:
+            logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
 
     # save detailed outputs, if requested
     if args.jsonOut:
