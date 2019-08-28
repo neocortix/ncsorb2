@@ -40,13 +40,15 @@ def startTest( testsUrl, reqParams ):
 
 def downloadDataFile(url, dataDirPath):
     local_filename = dataDirPath + '/' + url.split('/')[-1]
-    r = requests.get(url)
-    f = open(local_filename, 'wb')
-    for chunk in r.iter_content(chunk_size=512 * 1024): 
-        if chunk: # filter out keep-alive new ch unks
-            f.write(chunk)
-    f.close()
-    return 
+    # make request with stream=True
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192): 
+                if chunk: # filter out keep-alive new chunks
+                    f.write(chunk)
+                    # f.flush()
+    return
 
 if __name__ == "__main__":
     logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s %(funcName)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
