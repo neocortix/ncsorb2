@@ -25,3 +25,5 @@ steps:
         --authToken $NCS_AUTH_TOKEN
   - store_artifacts:
       path: loadtest_out.json
+  - store_artifacts:
+      path: data
