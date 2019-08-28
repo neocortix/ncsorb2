@@ -4,7 +4,7 @@ analyzes a neocortix event log
 """
 # standard library modules
 import argparse
-import concurrent.futures
+#import concurrent.futures
 import csv
 import datetime
 import json
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     ap.add_argument( '--authToken', required=True, help='the NCS authorization token to use' )
     ap.add_argument('--jsonOut', help='file path to write detailed info in json format')
     ap.add_argument( '--masterUrl', default='http://localhost', help='url of the master' )
-    ap.add_argument( '--nConcurrent', type=int, default=1, help='number of concurrent tests' )
+    #ap.add_argument( '--nConcurrent', type=int, default=1, help='number of concurrent tests' )
     ap.add_argument( '--nWorkers', type=int, default=1, help='the # of worker instances to launch (or zero for all available)' )
     ap.add_argument( '--susTime', type=int, default=10, help='time to sustain the test after startup (in seconds)' )
     args = ap.parse_args()
@@ -81,56 +81,62 @@ if __name__ == "__main__":
         "--rampUpRate", str(rampUpRate), "--startTimeLimit", str(startTimeLimit)
         ]
 
-    nTests = args.nConcurrent
+    #nTests = args.nConcurrent
     # start tests
-    #testId = startTest( testsUrl, reqParams )
-    #testIds = [testId]
+    testId = startTest( testsUrl, reqParams )
+    testIds = [testId]
+    '''
     with concurrent.futures.ThreadPoolExecutor( max_workers=nTests ) as executor:
         parIter = executor.map( startTest, [testsUrl]*nTests, [reqParams]*nTests )
         testIds = list( parIter )
-
+    '''
     logger.info( 'testIds: %s', testIds )
 
     # dict of results by testId
     results = {}
+    # results dict from the service
+    result = {}
 
     # poll the started tests
     #gotResults = False
     while True:
         anyRunning = False
-        for testId in testIds:
-            statusUrl = testsUrl + testId
-            logger.info( 'polling: %s', statusUrl )
-            resp = requests.get( statusUrl )
-            if resp.status_code != 200:
-                logger.warning( 'poll status_code %d', resp.status_code )
-            else:
-                #logger.info( 'poll text %s', resp.text )
-                respJson = resp.json()
-                results[ testId ] = respJson
-                #gotResults = True
-                #logger.info( 'poll json %s', respJson )
-                logger.info( 'poll json state: %s', respJson['state'] )
-                logger.info( 'poll json stderr: %s', respJson['stderr'][-400:] )
-                anyRunning = anyRunning or respJson['state'] == 'running'
-                #if respJson['state'] == 'stopped':
-                #    break
+        #for testId in testIds:
+        statusUrl = testsUrl + testId
+        logger.info( 'polling: %s', statusUrl )
+        resp = requests.get( statusUrl )
+        if resp.status_code != 200:
+            logger.warning( 'poll status_code %d', resp.status_code )
+        else:
+            #logger.info( 'poll text %s', resp.text )
+            respJson = resp.json()
+            #results[ testId ] = respJson
+            result = respJson
+            #gotResults = True
+            #logger.info( 'poll json %s', respJson )
+            logger.info( 'poll json state: %s', respJson['state'] )
+            logger.info( 'poll json stderr: %s', respJson['stderr'][-400:] )
+            anyRunning = anyRunning or respJson['state'] == 'running'
+            #if respJson['state'] == 'stopped':
+            #    break
         if not anyRunning:
             break
         time.sleep( 5 )
 
     # print results
-    for testId in testIds:
-        if not testId in results:
-            print( '>>NO results for', testId )
-        else:
-            print('>>stdout from', testId)
-            print( results[testId]['stdout'] )
+    #for testId in testIds:
+    if not result:
+        print( '>>NO result for', testId )
+    else:
+        print('>>stdout from', testId)
+        print( result['stdout'] )
+        if not result['stdout']:
+            print( '  empty stdout')
     # save detailed outputs, if requested
     if args.jsonOut:
         argsToSave = vars(args).copy()
         del argsToSave['authToken']
-        toSave = { 'args': argsToSave, 'results': results }
+        toSave = { 'args': argsToSave, 'result': result }
         jsonOutFilePath = os.path.expanduser( os.path.expandvars( args.jsonOut ) )
         with open( jsonOutFilePath, 'w') as outFile:
             json.dump( toSave, outFile, indent=2 )
