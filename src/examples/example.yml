@@ -1,14 +1,20 @@
 description: >
-  Sample example description.
-  # What will this example document?
+  This example does a small loadtest. To use this orb, you need to define a
+  $NCS_AUTH_TOKEN environment variable.
   # Descriptions should be short, simple, and clear.
 usage:
   version: 2.1
   orbs:
-    foo: bar/foo@1.2.3
+    ncsorb2: neocortix/ncsorb2@dev:alpha
+
   jobs:
     build:
-      machine: true
+      docker:
+        - image: circleci/python:3.6
       steps:
-        - foo/hello:
-            username: "Anna"
+        - checkout
+
+        - ncsorb2/loadtest:
+            targetHostUrl: "https://www.example.com"
+            nWorkers: 3
+            susTime: 15
