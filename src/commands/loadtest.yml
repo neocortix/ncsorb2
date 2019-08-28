@@ -21,7 +21,7 @@ steps:
       command: >-
         python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >>
         --nWorkers << parameters.nWorkers >> --susTime << parameters.susTime >>
-        --jsonOut loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/
+        --jsonOut data/loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/
         --authToken $NCS_AUTH_TOKEN
   - store_artifacts:
       path: loadtest_out.json
