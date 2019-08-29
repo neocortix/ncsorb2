@@ -1,0 +1,23 @@
+description: >
+  performs a loadtest using Necocortix Last-Mile Loadtest service
+docker:
+  - image: circleci/python:3.6 # the primary container, where your job's commands are run
+parameters:
+  targetHostUrl:
+    type: string
+    description: "url of the host to target as victim"
+  nWorkers:
+    type: integer
+    default: 1
+    description: "the # of worker instances to launch (or zero for all available)"
+  susTime:
+    type: integer
+    default: 10
+    description: "how much time to sustain the test after startup (in seconds)"
+steps:
+  - checkout # check out the code in the project directory
+
+  - loadtest:  # the loadtest command within this orb
+      targetHostUrl: << parameters.targetHostUrl >>
+      nWorkers: << parameters.nWorkers >>
+      susTime: << parameters.susTime >>
