@@ -74,11 +74,13 @@ workflows:
   integration-tests_prod-release:
     jobs:
       # - your integration test jobs go here
-      # - you will want to call each integration testing job twice,
-      # - each under a different name:
+      # - you will want to define each integration testing job twice,
+      # - each under a different name, with a different "filters" parameter:
       # - once, for integration tests triggered by non-master-branch commits
       # - and again, for tests triggered by commits to master
       # - only commits to master should potentially trigger a prod release
+
+      # the project needs a $NCS_AUTH_TOKEN env var for these tests to run successfully
       - ncsorb2/loadtest:
           name: test-orb-dev
           filters: *integration-dev_filters
