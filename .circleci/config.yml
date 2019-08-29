@@ -91,7 +91,6 @@ workflows:
           targetHostUrl: "https://www.example.com"
           nWorkers: 4
           susTime: 30
-
       # patch, minor, or major publishing
       - orb-tools/dev-promote-prod:
           name: dev-promote-patch
@@ -99,7 +98,7 @@ workflows:
           ssh-fingerprints: "1a:b2:7e:f4:a9:e1:09:f9:ce:ee:1b:b6:c8:8d:4f:08"
           cleanup-tags: true
           requires:
-            test-orb-dev
+            - test-orb-dev
           filters:
             branches:
               ignore: /.*/
@@ -113,7 +112,7 @@ workflows:
           ssh-fingerprints: "1a:b2:7e:f4:a9:e1:09:f9:ce:ee:1b:b6:c8:8d:4f:08"
           cleanup-tags: true
           requires:
-            test-orb-master
+            - test-orb-master
           filters:
             branches:
               ignore: /.*/
@@ -127,7 +126,7 @@ workflows:
           ssh-fingerprints: "1a:b2:7e:f4:a9:e1:09:f9:ce:ee:1b:b6:c8:8d:4f:08"
           cleanup-tags: true
           requires:
-            test-orb-master
+            - test-orb-master
           filters:
             branches:
               ignore: /.*/
