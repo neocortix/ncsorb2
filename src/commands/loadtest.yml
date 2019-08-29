@@ -8,6 +8,7 @@ parameters:
   nWorkers:
     type: integer
     default: 1
+    description: "the # of worker instances to launch (or zero for all available)"
   susTime:
     type: integer
     default: 10
