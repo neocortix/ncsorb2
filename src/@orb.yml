@@ -1,7 +1,4 @@
 version: 2.1
 
 description: >
-  enables Neocortix Last-mile Load Testing for your projects
-
-orbs:
-  hello: circleci/hello-build@0.0.5 # Sample imported orb
+  Perform Neocortix Last-mile Load Testing for your projects
