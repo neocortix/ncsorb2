@@ -1,5 +1,5 @@
 # How to author Executors: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-executors
 description: >
-  uses a generic python image
+  uses a generic python 3 image
 docker:
   - image: circleci/python:3.6
