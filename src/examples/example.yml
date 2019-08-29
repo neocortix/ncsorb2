@@ -1,11 +1,8 @@
 description: >
   This example does a small loadtest. To use this orb, you need to define a
   $NCS_AUTH_TOKEN environment variable.
-  # Descriptions should be short, simple, and clear.
 usage:
   version: 2.1
-  orbs:
-    ncsorb2: neocortix/ncsorb2@dev:alpha
 
   jobs:
     build:
