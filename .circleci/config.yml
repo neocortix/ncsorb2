@@ -84,17 +84,19 @@ workflows:
       - ncsorb2/loadtest:
           name: test-orb-dev
           filters: *integration-dev_filters
+          branch: Alpha
           targetHostUrl: "https://www.example.com"
           nWorkers: 3
           susTime: 15
-          branch: Alpha
+          usersPerWorker: 1
       - ncsorb2/loadtest:
           name: test-orb-master
           filters: *integration-master_filters
+          branch: master
           targetHostUrl: "https://www.example.com"
           nWorkers: 4
           susTime: 30
-          branch: master
+          usersPerWorker: 1
       # patch, minor, or major publishing
       - orb-tools/dev-promote-prod:
           name: dev-promote-patch
