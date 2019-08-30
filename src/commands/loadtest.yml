@@ -12,23 +12,14 @@ parameters:
     type: integer
     default: 10
     description: "how much time to sustain the test after startup (in seconds)"
-  alpha:
-    type: boolean
-    default: false
-    description: "pass true to use alpha version of orb code"
+  branch:
+    type: string
+    default: master
+    description: "which branch to get code from"
 steps:
-  - when:
-      condition: << parameters.alpha >>
-      steps:
-        - run:
-            name: fetching code (alpha)
-            command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/Alpha/runRemoteLoadtest.py
-  - unless:
-      condition: << parameters.alpha >>
-      steps:
-        - run:
-            name: fetching code (master)
-            command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/master/runRemoteLoadtest.py
+  - run:
+      name: fetching code (<< parameters.branch >>)
+      command: wget https://raw.githubusercontent.com/neocortix/ncsorb2/<< parameters.branch >>/runRemoteLoadtest.py
   - run:
       name: loadtesting
       command: >-
