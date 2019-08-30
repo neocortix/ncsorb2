@@ -114,7 +114,8 @@ if __name__ == "__main__":
     reqParams = [args.victimHostUrl, "<MasterHostUnspecified>",
         "--authToken", args.authToken, "--nWorkers", str(nWorkers),
         "--susTime", str(susTime), "--usersPerWorker", str(usersPerWorker),
-        "--rampUpRate", str(rampUpRate), "--startTimeLimit", str(startTimeLimit)
+        "--rampUpRate", str(rampUpRate), "--startTimeLimit", str(startTimeLimit),
+        "--targetUris", args.targetUris
         ]
 
     # start test
