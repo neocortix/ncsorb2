@@ -51,8 +51,7 @@ def downloadDataFile(url, dataDirPath):
     return
 
 def genXml():
-    template = '''
-<?xml version="1.0" ?>
+    template = '''<?xml version="1.0" ?>
 <testsuites>
     <testsuite tests="1" errors="0" failures="0" name="loadtests" >
         <testcase classname="com.neocortix.loadtest" name="loadtest" time="123.345000">
