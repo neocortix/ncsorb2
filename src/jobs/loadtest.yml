@@ -1,5 +1,5 @@
 description: >
-  performs a loadtest using Necocortix Last-Mile Loadtest service
+  performs a loadtest using Necocortix Last-Mile Loadtest service (in a dedicated container)
 docker:
   - image: circleci/python:3.6 # the primary container, where your job's commands are run
 parameters:

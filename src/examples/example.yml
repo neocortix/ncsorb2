@@ -1,13 +1,11 @@
 description: >
-  This example does a small loadtest. To use this orb, you need to define a
-  $NCS_AUTH_TOKEN environment variable.
+  This simple python-oriented example does a small loadtest using a command based on the orb.
+  To use this orb, you need to define a $NCS_AUTH_TOKEN environment variable.
 usage:
-  version: 2.1
-
   jobs:
     build:
       docker:
-        - image: circleci/python:3.6
+        - image: circleci/python:3.6  # python 3.6.x is required for this example
       steps:
         - checkout
 

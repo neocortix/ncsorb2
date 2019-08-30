@@ -1,6 +1,6 @@
 # How to author commands: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands
 description: >
-  performs a loadtest using Necocortix Last-Mile Loadtest service
+  performs a loadtest using Necocortix Last-Mile Loadtest service (in the current container)
 parameters:
   targetHostUrl:
     type: string
