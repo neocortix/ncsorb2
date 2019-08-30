@@ -10,7 +10,7 @@ parameters:
     description: "the # of worker instances to launch (or zero for all available)"
   rampUpRate:
     type: string
-    default: 0
+    default: "0"
     description: "# of simulated users to start per second (overall) (floating point number)"
   susTime:
     type: integer
