@@ -50,6 +50,24 @@ def downloadDataFile(url, dataDirPath):
                     # f.flush()
     return
 
+def genXml():
+    template = '''
+<?xml version="1.0" ?>
+<testsuites>
+    <testsuite tests="1" errors="0" failures="0" name="loadtests" >
+        <testcase classname="com.neocortix.loadtest" name="loadtest" time="123.345000">
+            <system-out>
+                I am stdout!
+            </system-out>
+            <system-err>
+                I am stderr!
+            </system-err>
+        </testcase>
+    </testsuite>
+</testsuites>
+    '''
+    return template
+
 if __name__ == "__main__":
     logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s %(funcName)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
     logger.setLevel(logging.INFO)
@@ -148,6 +166,16 @@ if __name__ == "__main__":
             downloadDataFile( dataUrlPrefix + '/integratedPerf.png', dataDirPath )
         except Exception as exc:
             logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
+
+    if True:
+        # generate fake junit-style xml test result file
+        xmlOut = genXml()
+        junitResultDirPath = dataDirPath + '/test-results/loadtest'
+        junitResultFilePath = junitResultDirPath + '/results.xml'
+        os.makedirs( junitResultDirPath, exist_ok=True )
+        with open( junitResultFilePath, 'w', encoding='utf8') as outFile:
+            outFile.write( xmlOut )
+
 
     # save detailed outputs, if requested
     if args.jsonOut:
