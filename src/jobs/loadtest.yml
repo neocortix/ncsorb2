@@ -21,3 +21,4 @@ steps:
       targetHostUrl: << parameters.targetHostUrl >>
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
+      alpha: false
