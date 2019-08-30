@@ -10,10 +10,18 @@ parameters:
     type: integer
     default: 1
     description: "the # of worker instances to launch (or zero for all available)"
+  rampUpRate:
+    type: string
+    default: "0"
+    description: "# of simulated users to start per second (overall) (floating point number)"
   susTime:
     type: integer
     default: 10
     description: "how much time to sustain the test after startup (in seconds)"
+  usersPerWorker:
+    type: integer
+    default: 6
+    description: "# of simulated users per worker"
   branch:
     type: string
     default: master
@@ -25,6 +33,6 @@ steps:
       targetHostUrl: << parameters.targetHostUrl >>
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
-      rampUpRate: "0.5"
-      usersPerWorker: 5
+      rampUpRate: << parameters.rampUpRate >>
+      usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
