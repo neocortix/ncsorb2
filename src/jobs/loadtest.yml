@@ -25,4 +25,6 @@ steps:
       targetHostUrl: << parameters.targetHostUrl >>
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
+      rampUpRate: 0.5
+      usersPerWorker: 5
       branch: << parameters.branch >>
