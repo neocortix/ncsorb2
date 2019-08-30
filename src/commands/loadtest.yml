@@ -15,7 +15,7 @@ parameters:
   branch:
     type: string
     default: master
-    description: "which branch to get code from"
+    description: "which branch to get orb support code from"
 steps:
   - run:
       name: fetching code (<< parameters.branch >>)

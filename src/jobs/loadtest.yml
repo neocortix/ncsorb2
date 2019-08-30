@@ -14,6 +14,10 @@ parameters:
     type: integer
     default: 10
     description: "how much time to sustain the test after startup (in seconds)"
+  branch:
+    type: string
+    default: master
+    description: "which branch to get get orb support code from"
 steps:
   - checkout # check out the code in the project directory
 
@@ -21,4 +25,4 @@ steps:
       targetHostUrl: << parameters.targetHostUrl >>
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
-      branch: Alpha
+      branch: << parameters.branch >>
