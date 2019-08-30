@@ -81,11 +81,14 @@ if __name__ == "__main__":
     ap.add_argument( '--nWorkers', type=int, default=1, help='the # of worker instances to launch (or zero for all available)' )
     ap.add_argument( '--rampUpRate', type=float, default=0, help='# of simulated users to start per second (overall)' )
     ap.add_argument( '--susTime', type=int, default=10, help='time to sustain the test after startup (in seconds)' )
+    ap.add_argument( '--targetUris', nargs='*', help='list of URIs to target' )
     ap.add_argument( '--usersPerWorker', type=int, default=6, help='# of simulated users per worker' )
     args = ap.parse_args()
 
     dataDirPath = 'data'
     os.makedirs( dataDirPath, exist_ok=True )
+
+    logger.info( 'args.targetUris: %s', args.targetUris )
 
     masterUrl = args.masterUrl
     logger.info( 'testing connectivity to masterUrl: %s', masterUrl )
