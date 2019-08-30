@@ -51,10 +51,11 @@ def downloadDataFile(url, dataDirPath):
     return
 
 def genXml():
+    '''preliminary version generates "fake" junit-style xml'''
     template = '''<?xml version="1.0" ?>
 <testsuites>
     <testsuite tests="1" errors="0" failures="0" name="loadtests" >
-        <testcase classname="com.neocortix.loadtest" name="loadtest" time="123.345000">
+        <testcase classname="com.neocortix.loadtest" name="loadtest" time="1.0">
             <system-out>
                 I am stdout!
             </system-out>
@@ -166,7 +167,7 @@ if __name__ == "__main__":
         except Exception as exc:
             logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
 
-    if True:
+    if False:
         # generate fake junit-style xml test result file
         xmlOut = genXml()
         junitResultDirPath = dataDirPath + '/test-results/loadtest'

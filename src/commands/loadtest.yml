@@ -26,5 +26,5 @@ steps:
         --authToken $NCS_AUTH_TOKEN
   - store_artifacts:
       path: data
-  - store_test_results:
-      path: data/test-results
+  #- store_test_results:
+  #    path: data/test-results
