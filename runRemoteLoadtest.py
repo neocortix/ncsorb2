@@ -79,7 +79,9 @@ if __name__ == "__main__":
     ap.add_argument('--jsonOut', help='file path to write detailed info in json format')
     ap.add_argument( '--masterUrl', default='http://localhost', help='url of the master' )
     ap.add_argument( '--nWorkers', type=int, default=1, help='the # of worker instances to launch (or zero for all available)' )
+    ap.add_argument( '--rampUpRate', type=float, default=0, help='# of simulated users to start per second (overall)' )
     ap.add_argument( '--susTime', type=int, default=10, help='time to sustain the test after startup (in seconds)' )
+    ap.add_argument( '--usersPerWorker', type=int, default=6, help='# of simulated users per worker' )
     args = ap.parse_args()
 
     dataDirPath = 'data'
@@ -104,8 +106,8 @@ if __name__ == "__main__":
     nWorkers = args.nWorkers
     startTimeLimit = 30
     susTime = args.susTime
-    usersPerWorker = 6
-    rampUpRate = nWorkers * 1
+    usersPerWorker = args.usersPerWorker
+    rampUpRate = args.rampUpRate
     reqParams = [args.victimHostUrl, "<MasterHostUnspecified>",
         "--authToken", args.authToken, "--nWorkers", str(nWorkers),
         "--susTime", str(susTime), "--usersPerWorker", str(usersPerWorker),
