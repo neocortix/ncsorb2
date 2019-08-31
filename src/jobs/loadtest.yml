@@ -18,6 +18,10 @@ parameters:
     type: integer
     default: 10
     description: "how much time to sustain the test after startup (in seconds)"
+  targetUris:
+    type: string
+    description: "list of URIs to target (space-separated) or empty for root"
+    default: ""
   usersPerWorker:
     type: integer
     default: 6
@@ -36,6 +40,6 @@ steps:
       rampUpRate: << parameters.rampUpRate >>
       usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
-      #targetUris: >-
-      #  /favicon.ico
-      #  /index.html
+      targetUris: >-
+        /favicon.ico
+        /index.html
