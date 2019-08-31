@@ -86,11 +86,13 @@ workflows:
           filters: *integration-dev_filters
           branch: Alpha
           targetHostUrl: "https://www.example.com"
-          nWorkers: 3
+          nWorkers: 9
           susTime: 15
           usersPerWorker: 1
+          regions: >-
+            north-america
+            europe
           targetUris: >-
-            /index.html
             /index.html
       - ncsorb2/loadtest:
           name: test-orb-master
