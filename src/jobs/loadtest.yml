@@ -40,6 +40,4 @@ steps:
       rampUpRate: << parameters.rampUpRate >>
       usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
-      targetUris: >-
-        /favicon.ico
-        /index.html
+      targetUris: << parameters.targetUris >>

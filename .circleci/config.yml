@@ -89,6 +89,9 @@ workflows:
           nWorkers: 3
           susTime: 15
           usersPerWorker: 1
+          targetUris: >-
+            /index.html
+            /index.html
       - ncsorb2/loadtest:
           name: test-orb-master
           filters: *integration-master_filters
@@ -97,6 +100,8 @@ workflows:
           nWorkers: 4
           susTime: 30
           usersPerWorker: 1
+          targetUris: >-
+            /index.html
       # patch, minor, or major publishing
       - orb-tools/dev-promote-prod:
           name: dev-promote-patch
