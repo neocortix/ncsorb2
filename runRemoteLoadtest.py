@@ -29,8 +29,7 @@ logger = logging.getLogger(__name__)
 
 def startTest( testsUrl, reqParams ):
     reqDataStr = json.dumps( reqParams )
-    logger.info( 'reqDataStr: %s', reqDataStr )
-    #sys.exit( 'DEBUGGING' )
+    #logger.debug( 'reqDataStr: %s', reqDataStr )
     resp = requests.post( testsUrl, data=reqDataStr )
     logger.info( 'POST status_code %d', resp.status_code )
     logger.info( 'POST text %s', resp.text )
