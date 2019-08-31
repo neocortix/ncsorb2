@@ -10,6 +10,10 @@ parameters:
     type: integer
     default: 1
     description: "the # of worker instances to launch (or zero for all available)"
+  altTargetHostUrl:
+    type: string
+    default: ""
+    description: "an alternative target host URL for comparison"
   rampUpRate:
     type: string
     default: "0"
@@ -42,6 +46,7 @@ steps:
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
       rampUpRate: << parameters.rampUpRate >>
+      altTargetHostUrl: "https://d1ki6ltcdxd6oo.cloudfront.net"
       regions: << parameters.regions >>
       usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
