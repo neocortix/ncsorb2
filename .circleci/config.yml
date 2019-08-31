@@ -86,14 +86,13 @@ workflows:
           filters: *integration-dev_filters
           branch: Alpha
           targetHostUrl: "https://www.example.com"
-          nWorkers: 9
+          nWorkers: 3
           susTime: 15
-          usersPerWorker: 1
           regions: >-
-            north-america
-            europe
+            north-america russia-ukraine-belarus
           targetUris: >-
             /index.html
+          usersPerWorker: 1
       - ncsorb2/loadtest:
           name: test-orb-master
           filters: *integration-master_filters
@@ -101,9 +100,11 @@ workflows:
           targetHostUrl: "https://www.example.com"
           nWorkers: 4
           susTime: 30
-          usersPerWorker: 1
+          regions: >-
+            north-america russia-ukraine-belarus
           targetUris: >-
             /index.html
+          usersPerWorker: 1
       # patch, minor, or major publishing
       - orb-tools/dev-promote-prod:
           name: dev-promote-patch
