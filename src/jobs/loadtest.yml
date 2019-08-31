@@ -42,7 +42,7 @@ steps:
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
       rampUpRate: << parameters.rampUpRate >>
-      regions: "north-america"
+      regions: << parameters.regions >>
       usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
       targetUris: << parameters.targetUris >>
