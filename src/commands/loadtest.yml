@@ -18,7 +18,7 @@ parameters:
     description: "how much time to sustain the test after startup (in seconds)"
   targetUris:
     type: string
-    description: "list of URIs to target (newline-separated) or empty for root"
+    description: "list of URIs to target (space-separated) or empty for root"
     default: ""
   usersPerWorker:
     type: integer
