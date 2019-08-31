@@ -76,6 +76,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser( description=__doc__, fromfile_prefix_chars='@' )
     ap.add_argument( 'victimHostUrl', help='url of the host to target as victim' )
     ap.add_argument( '--authToken', required=True, help='the NCS authorization token to use' )
+    ap.add_argument( '--altTargetHostUrl', help='an alternative target host URL for comparison' )
     ap.add_argument('--jsonOut', help='file path to write detailed info in json format')
     ap.add_argument( '--masterUrl', default='http://localhost', help='url of the master' )
     ap.add_argument( '--nWorkers', type=int, default=1, help='the # of worker instances to launch (or zero for all available)' )
@@ -89,7 +90,7 @@ if __name__ == "__main__":
     dataDirPath = 'data'
     os.makedirs( dataDirPath, exist_ok=True )
 
-    logger.info( 'args.regions: %s', args.regions )
+    logger.info( 'args.altTargetHostUrl: %s', args.altTargetHostUrl )
 
     masterUrl = args.masterUrl
     logger.info( 'testing connectivity to masterUrl: %s', masterUrl )
