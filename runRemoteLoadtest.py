@@ -29,7 +29,8 @@ logger = logging.getLogger(__name__)
 
 def startTest( testsUrl, reqParams ):
     reqDataStr = json.dumps( reqParams )
-    #logger.debug( 'reqDataStr: %s', reqDataStr )
+    logger.info( 'reqDataStr: %s', reqDataStr )
+    #sys.exit( 'DEBUGGING' )
     resp = requests.post( testsUrl, data=reqDataStr )
     logger.info( 'POST status_code %d', resp.status_code )
     logger.info( 'POST text %s', resp.text )
@@ -114,10 +115,12 @@ if __name__ == "__main__":
     reqParams = [args.victimHostUrl, "<MasterHostUnspecified>",
         "--authToken", args.authToken, "--nWorkers", str(nWorkers),
         "--susTime", str(susTime), "--usersPerWorker", str(usersPerWorker),
-        "--rampUpRate", str(rampUpRate), "--startTimeLimit", str(startTimeLimit),
-        "--targetUris", args.targetUris
+        "--rampUpRate", str(rampUpRate), "--startTimeLimit", str(startTimeLimit)
         ]
-
+    if args.targetUris:
+        reqParams.append( '--targetUris' )
+        for uri in args.targetUris:
+            reqParams.append( uri )
     # start test
     testId = startTest( testsUrl, reqParams )
     logger.info( 'testId: %s', testId )
