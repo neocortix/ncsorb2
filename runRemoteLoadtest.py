@@ -121,6 +121,13 @@ if __name__ == "__main__":
         reqParams.append( '--targetUris' )
         for uri in args.targetUris:
             reqParams.append( uri )
+    if args.regions:
+        regionsDict = {'regions': args.regions}
+        filterArg = json.dumps( regionsDict )
+        # this code could become trickier if other filter args are supported
+        reqParams.append( '--filter' )
+        reqParams.append( filterArg )
+    
     # start test
     testId = startTest( testsUrl, reqParams )
     logger.info( 'testId: %s', testId )
