@@ -12,6 +12,10 @@ parameters:
     type: string
     default: "0"
     description: "# of simulated users to start per second (overall) (floating point number)"
+  regions:
+    type: string
+    description: "list of geographic regions (space-separated) (or empty for all regions)"
+    default: ""
   susTime:
     type: integer
     default: 10
@@ -38,6 +42,7 @@ steps:
         python3 ./runRemoteLoadtest.py << parameters.targetHostUrl >>
         --nWorkers << parameters.nWorkers >> --susTime << parameters.susTime >>
         --rampUpRate << parameters.rampUpRate >> --usersPerWorker << parameters.usersPerWorker >>
+        --regions << parameters.regions >>
         --targetUris << parameters.targetUris >>
         --jsonOut data/loadtest_out.json --masterUrl  https://load-test.cloud.neocortix.com/
         --authToken $NCS_AUTH_TOKEN

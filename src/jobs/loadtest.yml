@@ -14,6 +14,10 @@ parameters:
     type: string
     default: "0"
     description: "# of simulated users to start per second (overall) (floating point number)"
+  regions:
+    type: string
+    description: "list of geographic regions (space-separated) (or empty for all regions)"
+    default: ""
   susTime:
     type: integer
     default: 10
@@ -38,6 +42,7 @@ steps:
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
       rampUpRate: << parameters.rampUpRate >>
+      regions: "north-america""
       usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
       targetUris: << parameters.targetUris >>
