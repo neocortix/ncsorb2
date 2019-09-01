@@ -12,7 +12,7 @@ parameters:
     description: "the # of worker instances to launch (or zero for all available)"
   altTargetHostUrl:
     type: string
-    default: ""
+    default: '""'
     description: "an alternative target host URL for comparison"
   rampUpRate:
     type: string
