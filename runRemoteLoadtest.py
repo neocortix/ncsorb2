@@ -174,10 +174,20 @@ if __name__ == "__main__":
 
     if success:
         dataUrlPrefix = testsUrl + testId
-        try:
-            downloadDataFile( dataUrlPrefix + '/ltStats.html', dataDirPath )
-        except Exception as exc:
-            logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
+        if args.altTargetHostUrl:
+            try:
+                downloadDataFile( dataUrlPrefix + '/ltStats_a.html', dataDirPath )
+            except Exception as exc:
+                logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
+            try:
+                downloadDataFile( dataUrlPrefix + '/ltStats_b.html', dataDirPath )
+            except Exception as exc:
+                logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
+        else:
+            try:
+                downloadDataFile( dataUrlPrefix + '/ltStats.html', dataDirPath )
+            except Exception as exc:
+                logger.warning( 'exception (%s) downloading; %s', type(exc), exc )
         try:
             downloadDataFile( dataUrlPrefix + '/locustStats.jlog', dataDirPath )
         except Exception as exc:
