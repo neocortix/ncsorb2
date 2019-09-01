@@ -88,6 +88,7 @@ workflows:
           targetHostUrl: "https://www.example.com"
           nWorkers: 3
           susTime: 15
+          altTargetHostUrl: "https://d1ki6ltcdxd6oo.cloudfront.net"
           regions: >-
             north-america russia-ukraine-belarus
           targetUris: >-

@@ -46,7 +46,7 @@ steps:
       nWorkers: << parameters.nWorkers >>
       susTime: << parameters.susTime >>
       rampUpRate: << parameters.rampUpRate >>
-      altTargetHostUrl: "https://d1ki6ltcdxd6oo.cloudfront.net"
+      altTargetHostUrl: << parameters.altTargetHostUrl >>
       regions: << parameters.regions >>
       usersPerWorker: << parameters.usersPerWorker >>
       branch: << parameters.branch >>
