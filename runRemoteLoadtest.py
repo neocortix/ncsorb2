@@ -118,6 +118,9 @@ if __name__ == "__main__":
         "--susTime", str(susTime), "--usersPerWorker", str(usersPerWorker),
         "--rampUpRate", str(rampUpRate), "--startTimeLimit", str(startTimeLimit)
         ]
+    if args.altTargetHostUrl:
+        reqParams.append( '--altTargetHostUrl' )
+        reqParams.append( args.altTargetHostUrl )
     if args.targetUris:
         reqParams.append( '--targetUris' )
         for uri in args.targetUris:
