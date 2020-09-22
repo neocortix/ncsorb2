@@ -1,5 +1,7 @@
 ## Welcome to GitHub Pages
 
+This is a GitHub Pages page for the Neocortix project ncsorb2.
+
 You can use the [editor on GitHub](https://github.com/neocortix/ncsorb2/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
